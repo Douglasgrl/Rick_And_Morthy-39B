@@ -1,0 +1,18 @@
+.cards__cont{
+    width: 300px;
+    background-color: rgb(220, 200, 220);
+    margin: 1rem;
+    border-radius: 1rem;
+}
+
+img{
+    margin-top: 1rem;
+    border-radius: 1rem;
+    width: 250px;
+}
+
+a{
+    text-decoration: none;
+    color: rgb(69, 34, 69);
+    width: 200px
+}

@@ -1,0 +1,18 @@
+.cards__container{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    padding-top: 4rem;
+}
+
+img{
+    width: 250px;
+    height: 250px;
+}
+
+.cards{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}

@@ -1,0 +1,137 @@
+.container__form{
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url("https://images8.alphacoders.com/633/633270.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center center;
+}
+
+.h1__form{
+    color: var(--white);
+    text-align: center;
+    width: 100%;
+    align-self: start;
+    padding-top: 3rem;
+    font-size: 5rem;
+}
+
+.form__login{
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 1rem;
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.9);
+    border-radius: 10px;
+    height: 55%;
+    width: 30%;
+    position: fixed;
+    margin-top: 4rem;
+    max-width: 420px;
+    min-width: 250px;
+    max-height: 500px;
+}
+
+form .group{
+    position: relative;
+    margin: 45px;
+}
+
+.form__login h2{
+    margin: 1rem;
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.form__login input {
+    background: none;
+    font-size: 1rem;
+    padding: 10px 10px 10px 5px;
+    display: block;
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid rgb(0, 0, 0);
+}
+
+.form__login input:focus{
+    outline: none;
+    color: rgb(0, 0, 0);
+}
+
+.form__login label{
+    display: flex;
+    font-size: 1rem;
+    position: absolute;
+    left: 5px;
+    top: 10px;
+    transition: 0.5s ease all;
+    pointer-events: none;
+}
+
+.form__login input:focus~label,
+.form__login input:valid~label{
+    top: -14px;
+    font-size: 14px;
+}
+
+.bar{
+    position: relative;
+    display: block;
+    width: 100%;
+}
+
+.bar::before{
+    content: "";
+    height: 2px;
+    width: 0%;
+    bottom: 0;
+    position: absolute;
+    background: var(--white);
+    transition: 0.3s ease width;
+    left: 0;
+}
+
+.form__login input:focus~.bar::before{
+    width: 100%;
+}
+
+.button__form{
+    background-color: var(--white);
+    width: 60%;
+    border: none;
+    padding: .6rem 1rem;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.button__form:hover{
+    background-color: rgba(255, 255, 255);
+}
+
+.form__login p{
+    margin: 1rem;
+    color: rgb(200, 0, 0);
+}
+
+
+@media screen and (max-width:750px) {
+    .h1__form{
+        font-size: 3rem;
+        padding-top: 4rem;
+    }
+
+    .form__login{
+        margin-top: 6rem;
+    }
+}
+
+
+@media screen and (max-width:1200px) {
+    .h1__form{
+        font-size: 4rem;
+        padding-top: 4rem;
+    }
+}
