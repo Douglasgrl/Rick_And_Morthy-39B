@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import validation from "../Validation/Validation"
+import { useNavigate } from 'react-router-dom'
 import "./Form.css"
 
 export default function Form({login}) {
@@ -10,7 +11,10 @@ export default function Form({login}) {
     password: "",
   })
 
-  const [errors, setErrors] = useState({})
+  const [errors, setErrors] = useState({
+    email : "",
+    password: "",
+  })
 
   const handleChange = (event) =>{
     setUserData({
@@ -24,10 +28,30 @@ export default function Form({login}) {
     }))
   }
 
+  const navigate = useNavigate();
+
   const handleSubmit = (event) =>{
     event.preventDefault()
-    login(userData)
-  }
+    let aux = Object.keys(errors);
+
+    if (aux.length === 0) {
+      
+      setErrors({
+        email: "",
+        password: "",
+      });
+      login(userData);
+      setUserData({
+        email: "",
+        password: "",
+      });
+
+      navigate("/home");
+    } else {
+      return navigate("/home");
+    } 
+  };
+
 
   return (
     <div className='container__form'>

@@ -21,7 +21,7 @@ export default function Cards({ onClose }) {
     <div className="cards__container">
       <div className="cards">
       {viewCharacters?.map(
-        ({ id, name, status, species, gender, origin, image }) => {
+        ({ id, name, status, species, gender, origin, image}) => {
           return (
             <Card
               key={id}

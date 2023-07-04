@@ -9,8 +9,8 @@ import Detail from "./components/Detail/Detail";
 import Form from "./components/Form/Form";
 import ErrorNot from "./components/ErrorNot/ErrorNot";
 import Favorites from "./components/Favorites/Favorites"
-import { connect, useDispatch} from "react-redux";
-import { addFav, removeFav, addChar } from "./redux/actions";
+import { connect, useDispatch, useSelector} from "react-redux";
+import { addFav, removeFav, addChar, removeChar, searchChar} from "./redux/actions";
 
 function App() {
   const [characters, setCharacters] = useState([]);
@@ -21,72 +21,67 @@ function App() {
 
   const navigate = useNavigate();
 
+  const URL = "http://localhost:3001/rickandmorty";
+
+
   const [access, setAccess] = useState(false);
-  const EMAIL = "Douglasgrl27@gmail.com";
-  const PASSWORD = "123";
 
   const login = (userData) => {
-    if (userData.password === PASSWORD && userData.email === EMAIL) {
-      setAccess(true);
-      return navigate("/home");
-    }
-    return alert("incorrect username or password");
-
+    axios
+    .get(`${URL}/login?password=${userData.password}&email=${userData.email}`)
+    .then(({ data }) => {
+      if (data.access) {
+        setAccess(true);
+        navigate("/home");
+        return alert("bienvenidos!!!");
+      } else {
+        return alert("incorrect username or password");
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    });
   };
-
-  useEffect(() => {
-    !access && navigate("/");
-  }, [access]);
 
   const logout = () => {
-    setAccess(false);
-    navigate("/");
-  };
-
-  const onSearch = (id) => {
-    axios(`https://rickandmortyapi.com/api/character/${id}`)
+    axios
+      .get(`${URL}/login?password=1234&email=1234`)
       .then(({ data }) => {
-        if (data.name) {
-          const repeat = characters.find(
-            (charact) => charact.id === Number(id)
-          );
-          if (repeat) return alert("Sorry, this character already exists!");
-
-          setCharacters((oldChars) => [...oldChars, data]);
-        } else {
-          window.alert("You must enter an id");
+        if (!data.access) {
         }
       })
       .catch((error) => {
-        if (error.response && error.response.status === 404) {
-          window.alert("There are no characters with this ID!");
-        } else {
-          console.error("Request Failed", error);
-        }
+        console.log(error);
       });
   };
 
+  const onSearch = (id) => {
+    axios(`http://localhost:3001/rickandmorty/character/${id}`).then(
+      ({ data }) => {
+        if (data.name) {
+          dispatch(searchChar(data));
+        } else {
+          window.alert("¡There are no characters with this ID!");
+        }
+      }
+    );
+  }
+  
+
   const onClose = (id) => {
-    setCharacters(characters.filter((chart) => chart.id !== id));
+    dispatch(removeChar(Number(id)));
   };
 
   useEffect(() => {
-    const requests = [];
-    for (let num = 22; num < 24; num++) {
-      requests.push(
-        axios.get(`https://rickandmortyapi.com/api/character?page=${num}`)
-      );
-    }
-    Promise.all(requests)
-      .then((results) => {
+    axios
+      .get(`http://localhost:3001/rickandmorty/allcharacters`)
+      .then((result) => {
+        dispatch(addChar(result.data));
+      });
+  }, []);
 
-        let newCharacters = [];
-        results.map(
-          (chars) => (newCharacters = [...newCharacters, ...chars.data.results])
-        );
-        dispatch(addChar([...newCharacters]));
-      })
-      .catch((error) => {});
+  useEffect(() => {
+    dispatch(addFav({id:"RELOAD"}));
   }, []);
 
   return (

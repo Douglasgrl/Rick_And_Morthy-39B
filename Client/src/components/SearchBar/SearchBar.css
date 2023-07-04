@@ -1,0 +1,11 @@
+.container__search{
+    gap: 1rem;
+}
+
+.button__search{
+    margin: 1rem;
+}
+
+.input__search{
+    padding: .3rem;
+}

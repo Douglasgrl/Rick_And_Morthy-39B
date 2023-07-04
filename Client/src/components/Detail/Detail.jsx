@@ -1,24 +1,21 @@
 import React from "react";
-import axios from "axios";
 import { useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect} from "react";
+import { useSelector } from "react-redux";
+
 
 export default function Detail() {
   const { id } = useParams();
 
   const [character, setCharacter] = useState({});
 
+  const { characters } = useSelector((s) => s);
+
   useEffect(() => {
-    axios(`https://rickandmortyapi.com/api/character/${id}`).then(
-      ({ data }) => {
-        if (data.name) {
-         setCharacter(data);
-        } else {
-         window.alert("There are no characters with that ID");
-        }
-      }
-    );
-    return setCharacter({});
+    const char = characters?.find((ch) => ch.id === Number(id));
+    if (char) setCharacter(char);
+    else window.alert("There are no characters with that ID");
+    // return setCharacter({});
   }, [id]);
 
   return (

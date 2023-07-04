@@ -1,46 +1,64 @@
-import { ADD_FAV, REMOVE_FAV, FILTER, ORDER, PREV, NEXT, ADD_CHART } from "./actionTypes";
+import { ADD_FAV, REMOVE_FAV, FILTER, ORDER, PREV, NEXT, ADD_CHART, REMOVE_CHAR,RESET_CHARACTERS, RESET_PAGE, SEARCH_CHAR } from "./actionTypes";
 
 
 const initalState = {
-  characters : [],  
+  charactersOr : [], 
+  characters : [],
+  allFavorites: [],
   myFavorites: [],
-  allCharacters: [],
   pageNumber: 1, 
 };
 
 const reducer = (state = initalState, action) => {
   switch (action.type) {
+
+    case SEARCH_CHAR:
+      return {
+        ...state,
+        characters: [action.payload],
+}
+
     case ADD_CHART:
       if (Array.isArray(action.payload)) {
         return {
           ...state,
           characters: [...action.payload],
+          charactersOr: [...action.payload],
         };
       }
 
       return {
         ...state,
-        characters: [action.payload, ...state.myFavorites],
+        characters: [action.payload, ...state.charactersOr],
+        charactersOr: [action.payload, ...state.charactersOr]
       };
+
+      case REMOVE_CHAR:
+      const newcharactersOr = state.charactersOr.filter((ch) => {
+        return ch.id !== action.payload;
+      });
+      return {
+        ...state,
+        characters : newcharactersOr,
+        charactersOr: newcharactersOr,
+      };
+
     case ADD_FAV:
       return {
         ...state,
-        myFavorites: [...state.allCharacters, action.payload],
-        allCharacters: [...state.allCharacters, action.payload],
+        myFavorites: action.payload,
+        allFavorites: action.payload,
       };
 
     case REMOVE_FAV:
-      const filterFavs = state.myFavorites.filter(
-        (favs) => favs.id !== action.payload
-      );
-      return {
-        ...state,
-        myFavorites: filterFavs,
-        allCharacters: filterFavs,
+      return{
+      ...state,
+      myFavorites: action.payload,
+      allFavorites: action.payload,
       };
 
     case FILTER:
-      const filterAll = state.allCharacters.filter(
+      const filterAll = state.allFavorites.filter(
         (charact) => charact.gender === action.payload
       );
       return {
@@ -49,7 +67,7 @@ const reducer = (state = initalState, action) => {
       };
 
     case ORDER:
-      const copyCharac = [...state.allCharacters];
+      const copyCharac = [...state.myFavorites];
       return {
         ...state,
         myFavorites:
@@ -68,8 +86,20 @@ const reducer = (state = initalState, action) => {
         pageNumber: state.pageNumber + 1,
       };
 
+      case RESET_CHARACTERS:
+        return {
+          ...state,
+          characters : [...state.charactersOr],
+        };
+      case RESET_PAGE:
+
+        return {
+          ...state,
+          pageNumber: 1,
+        };
+
     default:
-      return { ...state };
+      return state;
   }
 };
 
