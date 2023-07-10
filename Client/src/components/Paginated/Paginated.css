@@ -1,0 +1,21 @@
+.container__paginated{
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    color: #fff;
+    align-items: center;
+    font-size: 1.2rem;
+    padding-top: 5rem;
+}
+
+.container__paginated button{
+    font-size: 1rem;
+    background-color: transparent;
+    color: #fff;
+    padding: .5rem;
+    cursor: pointer;
+}
+
+.container__paginated button:hover{
+    background-color: rgb(40, 40, 100);
+}

@@ -1,0 +1,41 @@
+.container__detail{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 9.5rem;
+}
+
+.card__detail{
+    display: flex;
+    width: 68rem;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 500px;
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 1rem;
+    border: 3px solid #fff;
+}
+
+.detail__img{
+    width: 25rem;
+    height: 25rem;
+    border-radius: 20rem;
+    border: 3px solid #fff;
+}
+
+
+.details__description{
+    color: rgb(30, 30, 30);
+}
+
+.details__description h1{
+    font-size: 3rem;
+    padding-bottom: 3rem;
+    color: rgb(49, 47, 47);
+}
+
+.details__description h2{
+    padding-top: 1rem;
+    font-size: 2rem;
+    color : rgb(49, 47, 47);
+}

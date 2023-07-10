@@ -14,16 +14,20 @@ export function searchChar(char) {
 
 export const addFav = (character) =>{
   
-    return function (dispatch) {
-        axios
-        .post(`http://localhost:3001/rickandmorty/favorite/fav`, character)
-        .then(({ data }) => {
-            return dispatch({
-              type: ADD_FAV,
-              payload: data,
-            });
-          });
-      };
+  return async function (dispatch) {
+    try {
+      const { data } = await axios.post(
+        `http://localhost:3001/rickandmorty/fav`,
+        character
+      );
+      return dispatch({
+        type: ADD_FAV,
+        payload: data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 }
 
 export function removeChar(id) {
@@ -31,16 +35,19 @@ export function removeChar(id) {
 }
 
 export const removeFav = (id) =>{
-    return function (dispatch) {
-        axios
-          .delete(`http://localhost:3001/rickandmorty/favorite/fav/${id}`)
-          .then(({ data }) => {
-            return dispatch({
-              type: REMOVE_FAV,
-              payload: data,
-            });
-          });
-    };
+  return async function (dispatch) {
+    try {
+      const { data } = await axios.delete(
+        `http://localhost:3001/rickandmorty/fav/${id}`
+      );
+      return dispatch({
+        type: REMOVE_FAV,
+        payload: data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 }
 
 export const filterCards = (gender) =>{

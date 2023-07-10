@@ -48,7 +48,8 @@ export default function Form({login}) {
 
       navigate("/home");
     } else {
-      return navigate("/home");
+      navigate("/home");
+      return alert("error")
     } 
   };
 
@@ -60,13 +61,13 @@ export default function Form({login}) {
         <form className='form__login'onSubmit={handleSubmit} >
             <h2>Login</h2>
             <div className='group'>
-            <input name='email' type="text" value={userData.email} onChange={handleChange} required/><span className='bar'></span>
+            <input name='email' type="text" value={userData.email} onChange={handleChange} /><span className='bar'></span>
             <label htmlFor="email">Email: </label>
             {errors.email && <p>{errors.email}</p>}
             </div>
 
             <div className='group'>
-            <input name='password' type="password" value={userData.password} onChange={handleChange} required/>
+            <input name='password' type="password" value={userData.password} onChange={handleChange}/>
             <label htmlFor="password">Password: </label>
             <span className='bar'></span>
             {errors.password && <p>{errors.password}</p>}

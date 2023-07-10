@@ -1,11 +1,27 @@
 .container__search{
     gap: 1rem;
+    display: flex;
+    align-items: center;
 }
 
 .button__search{
-    margin: 1rem;
+    margin: 2rem;
+    flex-direction: row-reverse;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+}
+
+.button__one{
+    position: relative;
+    right: 3.5rem;
 }
 
 .input__search{
-    padding: .3rem;
+    padding: .3rem 1rem;
+}
+
+.button__search:hover{
+    background-color: rgb(250, 247, 247);
+    transition: all ease-in-out .3s;
 }

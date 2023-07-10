@@ -2,7 +2,7 @@ import React from "react";
 import Card from "../Card/Card";
 import { connect, useDispatch} from "react-redux";
 import "./Favorite.css" 
-import { filterCards, orderCards } from "../../redux/actions";
+import { filterCards, orderCards, allFavorites } from "../../redux/actions";
 import { useState } from "react";
 
 const Favorites =({ myFavorites }) =>{
@@ -22,17 +22,22 @@ const Favorites =({ myFavorites }) =>{
 
   return (
     <div className="Fav__container">
-      <select onChange={handleOrder}>
+      <div>
+
+      <select className="select__container" onChange={handleOrder}>
         <option value="A">Upward</option>
         <option value="D">Falling</option>
       </select>
 
-      <select onChange={handleFilter}>
+      <select className="select__container" onChange={handleFilter}>
+        <option value="allFavorites">All Favorites</option>
         <option value="Male">Male</option>
         <option value="Female">Female</option>
         <option value="Genderless">Genderless</option>
         <option value="unknown">Unknown</option>
       </select>
+      </div>
+      <div className="Fav__cards">
       {
         myFavorites?.map(({ id, name, status, species, gender, origin, image}) => {
         return (
@@ -48,6 +53,7 @@ const Favorites =({ myFavorites }) =>{
         />
         );
     })}
+    </div>
     </div>
   )
 }

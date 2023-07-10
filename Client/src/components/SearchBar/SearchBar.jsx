@@ -25,12 +25,12 @@ export default function SearchBar({ onSearch }) {
    const randomChar = () => {
       const numRan = Math.floor(Math.random() * 825) + 1;
       axios(`http://localhost:3001/rickandmorty/character/${numRan}`).then(
-         // axios("http://localhost:1222/")
          ({ data }) => {
            if (data.name) {
              dispatch(addChar(data));
            } else {
-             window.alert("¡No hay personajes con este ID!");
+             alert("¡No hay personajes con este ID!");
+             console.log("Hola")
            }
          }
        );
@@ -39,8 +39,9 @@ export default function SearchBar({ onSearch }) {
 return (
    <div className="container__search">
       
-      <input className="input__search" value={id} type="search" onChange={handleChange} />
+      <input className="input__search" value={id} type="search" onChange={handleChange} placeholder="Enter your id"/>
 
+      
       <button className="button__search button__one" onClick={add}>Search
       <FontAwesomeIcon icon={faMagnifyingGlass}/>
       </button>

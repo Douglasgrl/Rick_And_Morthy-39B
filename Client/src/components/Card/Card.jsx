@@ -3,9 +3,20 @@ import "./Card.css";
 import { addFav, removeFav } from "../../redux/actions";
 import { connect } from "react-redux";
 import { useState, useEffect } from "react";
-import Paginated from "../Paginated/Paginated";
 
-function Card({ id, onClose, name, status, species, gender, origin, image, addFav, removeFav, myFavorites }) {
+function Card({
+  id,
+  onClose,
+  name,
+  status,
+  species,
+  gender,
+  origin,
+  image,
+  addFav,
+  removeFav,
+  myFavorites,
+}) {
   const [isFav, setIsFav] = useState(false);
 
   const handleFavorite = () => {
@@ -14,47 +25,50 @@ function Card({ id, onClose, name, status, species, gender, origin, image, addFa
       removeFav(id);
     } else {
       setIsFav(true);
-      addFav({ id, name, status, species, gender, origin, image});
+      addFav({ id, name, status, species, gender, origin, image });
     }
-  }
+  };
 
   useEffect(() => {
     myFavorites.forEach((fav) => {
       if (fav.id === id) {
-            setIsFav(true);
+        setIsFav(true);
       }
     });
-}, [myFavorites]);
+  }, [myFavorites]);
 
-  const { pathname } = useLocation()
+  const { pathname } = useLocation();
 
   return (
     <div className="cards__cont">
-      
-        <button onClick={handleFavorite}> {isFav ? "❤️" : "🤍" } </button>
-      <div>
-        { pathname === "/home" && <button onClick={() => onClose(id)}>X</button>}
+      <div className="button__fav">
+        <button className="button__fav--one" onClick={handleFavorite}> {isFav ? "❤️" : "🤍"} </button>
+        <div>
+          {pathname === "/home" && (
+            <button className="button__fav--two" onClick={() => onClose(id)}>X</button>
+          )}
+        </div>
       </div>
 
-      <h2>{name}</h2>
-      <h2>Status: {status}</h2>
+      <Link to={`/detail/${id}`}>
+        <img src={image} alt={name} />
+      </Link>
+      <div className="container__h2">
+        <h2 className="Card__h2">{name}</h2>
+      </div>
+      {/* <h2>Status: {status}</h2>
       <h2>Species: {species}</h2>
       <h2>Gender: {gender}</h2>
-      <h2>Origin: {origin}</h2>
-
-      <Link to={`/detail/${id}`}>
-      <img src={image} alt={name} />
-      </Link>
-
+      <h2>Origin: {origin}</h2> */}
     </div>
   );
 }
 
-const mapStateToProps = (state) => {  
-  return{
-    myFavorites : state.myFavorites
-  }
-}
+const mapStateToProps = (state) => {
+  return {
+    myFavorites: state.myFavorites,
+  };
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {

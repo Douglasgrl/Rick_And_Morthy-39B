@@ -7,7 +7,7 @@ export default function Cards({ onClose }) {
 
   const { characters, pageNumber } = useSelector((state) => state);
 
-  const cantCharPerPage = 8;
+  const cantCharPerPage = 5;
 
   let from = (pageNumber - 1) * cantCharPerPage;
 

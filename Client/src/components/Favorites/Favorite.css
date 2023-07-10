@@ -4,4 +4,35 @@
     align-items: center;
     justify-content: center;
     padding-top: 4rem;
+    flex-direction: column;
+}
+
+.Fav__container img{
+    width: 280px;
+}
+
+.Fav__cards{
+    display: flex;
+}
+
+.select__container{
+    background-color: rgba(255, 255, 255, 0.5);
+    font-size: 1rem;
+    padding: 0 1rem;
+    color: rgb(49, 47, 47);
+    cursor: pointer;
+    margin: .5rem;
+    margin-top: 2rem;
+}
+
+.select__container option {
+    background-color: rgba(255, 255, 255, 0.5);
+    color: rgb(49, 47, 47);
+    cursor: pointer;
+}
+
+.select__container option:focus{
+    background-color: rgba(255, 255, 255, 0.5);
+    color: rgb(49, 47, 47);
+    cursor: pointer;
 }
