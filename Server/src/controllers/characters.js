@@ -5,7 +5,7 @@ const STATUS_OK = 200;
 const STATUS_ERROR = 500;
 
 const EMAIL_USER = "Douglasgrl27@gmail.com";
-const PASSWORD_USER = "123";
+const PASSWORD_USER = "123asd$A";
 
 const login = function (req, res) {
   const { password, email } = req.query;
@@ -25,11 +25,11 @@ const getCharacterId = async function (req, res) {
     const ch = await axios.get(`${URL}/${id}`);
     const { name, gender, species, origin, image, status } = ch.data;
     const character = {
-      id: Number(id),
+      id : Number(id),
       name,
       gender,
       species,
-      origin: origin?.name,
+      origin,
       image,
       status,
     };

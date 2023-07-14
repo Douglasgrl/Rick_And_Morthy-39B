@@ -97,6 +97,13 @@ form .group{
     width: 100%;
 }
 
+.viewPass svg{
+    position: absolute;
+    top: .8rem;
+    left: 17rem;
+    
+}
+
 .button__form{
     background-color: var(--white);
     width: 60%;
@@ -117,6 +124,27 @@ form .group{
 }
 
 
+@media screen and (max-width:1200px) {
+    .h1__form{
+        font-size: 4rem;
+        padding-top: 4rem;
+    }
+
+    .viewPass svg{
+        position: absolute;
+        top: .8rem;
+        left: 13.2rem;    
+    }
+}
+
+
+@media screen and (max-width:1000px) {
+
+    .viewPass svg{
+        left: 7.7rem;    
+    }
+}
+
 @media screen and (max-width:750px) {
     .h1__form{
         font-size: 3rem;
@@ -126,12 +154,9 @@ form .group{
     .form__login{
         margin-top: 6rem;
     }
-}
-
-
-@media screen and (max-width:1200px) {
-    .h1__form{
-        font-size: 4rem;
-        padding-top: 4rem;
+    .viewPass svg{
+        position: absolute;
+        top: .8rem;
+        left: 6.5rem;    
     }
 }

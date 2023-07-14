@@ -63,7 +63,10 @@ const reducer = (state = initalState, action) => {
       );
       return {
         ...state,
-        myFavorites: filterAll,
+        myFavorites:
+        action.payload === "allFavorites"
+        ? [...state.allFavorites]
+        : filterAll
       };
 
     case ORDER:

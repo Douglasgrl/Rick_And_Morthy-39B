@@ -41,6 +41,15 @@ function Card({
 
   return (
     <div className="cards__cont">
+
+      <div className="face front">
+
+        <img src={image} alt={name} />
+        <h2>{name}</h2>
+      </div>
+
+      <div className="face back">
+    <h2>Status: {status}</h2>
       <div className="button__fav">
         <button className="button__fav--one" onClick={handleFavorite}> {isFav ? "❤️" : "🤍"} </button>
         <div>
@@ -49,17 +58,14 @@ function Card({
           )}
         </div>
       </div>
-
-      <Link to={`/detail/${id}`}>
-        <img src={image} alt={name} />
-      </Link>
-      <div className="container__h2">
-        <h2 className="Card__h2">{name}</h2>
-      </div>
-      {/* <h2>Status: {status}</h2>
       <h2>Species: {species}</h2>
       <h2>Gender: {gender}</h2>
-      <h2>Origin: {origin}</h2> */}
+      <h2>Origin: {origin}</h2> 
+      <div className="Link">
+      <Link to={`/detail/${id}`}>Details +</Link>
+      </div>
+
+      </div>
     </div>
   );
 }

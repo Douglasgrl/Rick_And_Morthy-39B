@@ -32,7 +32,7 @@ export default function Detail() {
           <h2>Origin: {character.origin?.name}</h2>
           </div>
           </div>
-        
+
       )}
     </div>
   );

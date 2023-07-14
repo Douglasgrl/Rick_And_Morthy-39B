@@ -2,6 +2,8 @@ import React from 'react'
 import { useState } from 'react'
 import validation from "../Validation/Validation"
 import { useNavigate } from 'react-router-dom'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import { faEyeSlash, faEye } from '@fortawesome/free-solid-svg-icons'
 import "./Form.css"
 
 export default function Form({login}) {
@@ -15,6 +17,9 @@ export default function Form({login}) {
     email : "",
     password: "",
   })
+
+  const [viewPass, setViewPass] = useState(false)
+  
 
   const handleChange = (event) =>{
     setUserData({
@@ -32,25 +37,7 @@ export default function Form({login}) {
 
   const handleSubmit = (event) =>{
     event.preventDefault()
-    let aux = Object.keys(errors);
-
-    if (aux.length === 0) {
-      
-      setErrors({
-        email: "",
-        password: "",
-      });
-      login(userData);
-      setUserData({
-        email: "",
-        password: "",
-      });
-
-      navigate("/home");
-    } else {
-      navigate("/home");
-      return alert("error")
-    } 
+    login(userData)
   };
 
 
@@ -67,8 +54,15 @@ export default function Form({login}) {
             </div>
 
             <div className='group'>
-            <input name='password' type="password" value={userData.password} onChange={handleChange}/>
+              <div className='viewPass' onClick={() => setViewPass(!viewPass)}>
+              {viewPass ? <FontAwesomeIcon icon={faEye} />
+                      : <FontAwesomeIcon icon={faEyeSlash} /> }
+            </div>
+            <input name='password' type={ viewPass ? "text" : "password"} value={userData.password} onChange={handleChange}/>
             <label htmlFor="password">Password: </label>
+  
+
+            
             <span className='bar'></span>
             {errors.password && <p>{errors.password}</p>}
             </div>  

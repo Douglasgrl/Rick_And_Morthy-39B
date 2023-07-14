@@ -13,6 +13,9 @@
 
 .Fav__cards{
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 0rem 1rem;
 }
 
 .select__container{

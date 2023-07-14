@@ -32,6 +32,7 @@ function App() {
         `${URL}/login?password=${userData.password}&email=${userData.email}`
       );
       if (data.access) {
+        
         setAccess(true);
         navigate("/home");
         return alert("Welcome!!");
@@ -60,6 +61,7 @@ function App() {
         `http://localhost:3001/rickandmorty/character/${id}`
       );
       if (data.name) {
+        console.log(data)
         dispatch(searchChar(data));
       } else {
         window.alert("¡There are no characters with this ID!");

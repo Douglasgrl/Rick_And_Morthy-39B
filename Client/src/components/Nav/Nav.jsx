@@ -33,7 +33,7 @@ export default function Nav({ onSearch, logout }) {
         
         <SearchBar onSearch={onSearch}/>
         
-        <button onClick={logout} className="button__nav button__logout">LogOut
+        <button onClick={logout} className="button__nav button__logout"><p>LogOut </p>
         <FontAwesomeIcon icon={faRightFromBracket}/>
         </button>
     </div>

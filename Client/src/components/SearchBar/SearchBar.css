@@ -25,3 +25,28 @@
     background-color: rgb(250, 247, 247);
     transition: all ease-in-out .3s;
 }
+
+@media screen and (max-width:500px) {
+    .container__search{
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width:1200px) {
+
+    .button__search{
+        margin: 0;
+    }
+
+    .button__search p {
+        display: none;
+    }
+
+    .button__one{
+        margin-left: 1rem;
+    }
+
+    input__search{
+        padding: .3 .5rem;
+    }
+}

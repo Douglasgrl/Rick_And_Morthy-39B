@@ -6,6 +6,7 @@
     height: 60px;
     align-items: center;
     position: fixed;
+    z-index: 1;
 }
 
 .Container__nav button{
@@ -41,3 +42,24 @@
     background-color: rgb(250, 247, 247);
     transition: all ease-in-out .3s;
 }
+
+@media screen and (max-width:500px) {
+    .Container__nav{
+        flex-direction: column;
+    }
+}
+
+
+@media screen and (max-width:1200px) {
+
+    .Container__nav button a{
+        display: none;
+        background-color: red;
+    }
+
+    .button__logout p {
+        display: none;
+    }
+    
+}
+
